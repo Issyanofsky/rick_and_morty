@@ -50,9 +50,9 @@ jobs:
       # Wait for the app to be ready (optional, depending on the app's health check setup)
       - name: Wait for app to be ready
         run: |
-          kubectl wait --for=condition=available --timeout=300s deployment/my-app
+          kubectl wait --for=condition=available --timeout=300s deployment/rickmorty
 
       # Test application endpoint
       - name: Test application endpoint
         run: |
-          curl --retry 5 --retry-delay 5 --max-time 60 http://my-app-service:8080/healthcheck
+          curl --retry 5 --retry-delay 5 --max-time 60 http://localhot:5000/healthcheck
