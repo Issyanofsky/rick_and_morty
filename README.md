@@ -57,6 +57,21 @@ helm:
     helm upgrade --install -n rickmorty rickmorty -f values.yaml .
 
     it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
-    the valur.yaml is set to deploy image v1.0 with ingress listening for the domain "issy.site".
+    the value.yaml is set to deploy image v1.0 with ingress listening for the domain "issy.site".
+
+github:
+
+    the Github repository is: https://github.com/Issyanofsky/rick_and_morty
+    
+    created a Github Actions Runner file (.github/workflows/k8s-deploy-and-test.yml) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
+    it trigered on pull or push request (on the main branch).
+    it has those steps on a ubuntu (latest) image:
+        - Checkout code - retrive the code.
+        - Create Kubernetes cluster - Install dependencies (kind, kubectl).
+        - Set up kubeconfig - Create a Kubernetes cluster.
+        - Deploy application - Deploy the rick & morty app (api) to Kubernetes from yamles folder.
+        - Wait for the app to be ready .
+        - Test application endpoint - looks dor "healthy" responce.
+        
 
     
