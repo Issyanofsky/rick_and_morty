@@ -64,7 +64,7 @@ jobs:
           sleep 6
       
           # Check the /healthcheck endpoint on port 8080
-          curl -f http://localhost:8080/healthcheck || exit 1
+          curl -f http://localhost:8080/healthchec || exit 1
           
           # Optionally, terminate the port-forwarding after the test
           pkill -f "kubectl port-forward"
