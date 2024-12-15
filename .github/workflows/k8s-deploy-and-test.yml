@@ -43,5 +43,17 @@ jobs:
     # Step 5: Deploy application to Kubernetes
     - name: Deploy application
       run: |
-        kubectl apply -f deployment.yaml
+        kubectl apply -f     # Step 4: Set up Kubernetes context for kind cluster
+    - name: Set up kubeconfig
+      run: |
+        export KUBEVERSION=1.21.1
+        mkdir -p ~/.kube
+        kind get kubeconfig --name my-cluster > ~/.kube/config
+    
+    # Step 5: Deploy application to Kubernetes
+    - name: Deploy application
+      run: |
+        kubectl apply -f yamls/Deployment.yaml
+        kubectl apply -f yamels/Service.yaml
+
         kubectl apply -f service.yaml
