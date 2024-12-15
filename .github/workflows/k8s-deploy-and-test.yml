@@ -21,9 +21,49 @@ jobs:
         run: |
           # Install kind
           curl -sLo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.17.0/kind-linux-amd64
-          chmod +x /usr/local/bin/kind
+          sudo chmod +x /usr/local/bin/kind
           
           # Install kubectl
           curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl"
-          chmod +x ./kubectl
+          sudo chmod +x ./kubectl
           mv ./kubectl /usr/local/bin/kubectl
+
+      # Create a Kubernetes cluster using kind
+      - name: Create Kubernetes cluster
+        run: |
+          kind create cluster --name my-cluster
+
+      # Set up Kubernetes context for kind cluster
+      - name: Set up kubeconfig
+        run: |
+          export KUBEVERSION=1.21.1
+          mkdir -p ~/.kube
+          kind get kubeconfig --name my-cluster > ~/.kube/config
+
+      # Deploy application to Kubernetes from yamles folder
+      - name: Deploy application
+        run: |
+          kubectl create ns rickmorty
+          kubectl apply -f yamls/Deployment.yaml
+          kubectl apply -f yamls/Service.yaml
+
+      # Wait for the app to be ready 
+      - name: Wait for app to be ready
+        run: |
+          kubectl wait --for=condition=available --timeout=100s deployment.apps/rick-morty -n rickmorty
+        
+    # Test application endpoint
+      - name: Test application endpoint
+        run: |
+          # Get the service name (assuming it's 'rick-morty-service')
+          kubectl port-forward svc/rick-morty-service 8080:80 -n rickmorty & 
+          
+          # Wait for port forwarding to initialize
+          sleep 6
+      
+          # Check the /healthcheck endpoint on port 8080
+          curl -f http://localhost:8080/healthcheck || exit 1
+          
+          # Optionally, terminate the port-forwarding after the test
+          pkill -f "kubectl port-forward"
+      
