@@ -43,6 +43,7 @@ jobs:
       # Deploy application to Kubernetes from yamles folder
       - name: Deploy application
         run: |
+          kubectl create ns rickmorty
           kubectl apply -f yamls/Deployment.yaml
           kubectl apply -f yamls/Service.yaml
 
