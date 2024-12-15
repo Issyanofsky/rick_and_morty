@@ -63,6 +63,7 @@ K8s:
         kubectl appy -f Ingress.yaml
         
 helm:
+
     to execute the helm chard you first need to navigate to the rickmorty folder under the helm folder and execute the following command (inside your k8s cluster):
 
        helm upgrade --install -n rickmorty rickmorty -f values.yaml .
