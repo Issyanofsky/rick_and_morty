@@ -47,12 +47,10 @@ jobs:
           kubectl apply -f yamls/Deployment.yaml
           kubectl apply -f yamls/Service.yaml
 
-      # Wait for the app to be ready (optional, depending on the app's health check setup)
+      # Wait for the app to be ready 
       - name: Wait for app to be ready
         run: |
           kubectl wait --for=condition=available --timeout=100s deployment.apps/rick-morty -n rickmorty
-          # kubectl wait --for=condition=ready --timeout=300s deployment/rick-morty -n rickmorty
-
         
     # Test application endpoint
       - name: Test application endpoint
