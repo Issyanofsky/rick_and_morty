@@ -27,3 +27,21 @@ jobs:
           curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl"
           sudo chmod +x ./kubectl
           mv ./kubectl /usr/local/bin/kubectl
+
+# Step 3: Create a Kubernetes cluster using kind
+    - name: Create Kubernetes cluster
+      run: |
+        kind create cluster --name my-cluster
+
+ # Step 4: Set up Kubernetes context for kind cluster
+    - name: Set up kubeconfig
+      run: |
+        export KUBEVERSION=1.21.1
+        mkdir -p ~/.kube
+        kind get kubeconfig --name my-cluster > ~/.kube/config
+    
+    # Step 5: Deploy application to Kubernetes
+    - name: Deploy application
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
