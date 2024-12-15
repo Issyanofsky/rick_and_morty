@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rick-morty-service
+  namespace: rickmorty
+spec:
+  selector:
+    app: rick-morty
+  ports:
+  - port: 80
+    targetPort: 5000
+  type: ClusterIP

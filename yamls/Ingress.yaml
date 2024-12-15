@@ -1,0 +1,51 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: rick-morty-gateway
+  namespace: rickmorty
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - "issy.site"
+---
+  apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    name: rick-morty-virtualservice
+    namespace: rickmorty
+  spec:
+    hosts:
+      - "issy.site"
+    gateways:
+      - rick-morty-gateway
+    http:
+      - match:
+          - uri:
+              exact: "/characters"
+        route:
+          - destination:
+              host: rick-morty-service
+              port:
+                number: 80
+      - match:
+          - uri:
+              exact: "/healthcheck"
+        route:
+          - destination:
+              host: rick-morty-service
+              port:
+                number: 80
+      - match:
+          - uri:
+              exact: "/htmlversion"
+        route:
+          - destination:
+              host: rick-morty-service
+              port:
+                number: 80

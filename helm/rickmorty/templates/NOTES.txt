@@ -1,0 +1,4 @@
+1. Get the application URL by running these commands:
+http://issy.site/characters
+2. DockerHub image name:
+{{ .Values.image.repository }}:{{ .Values.image.tag }}
