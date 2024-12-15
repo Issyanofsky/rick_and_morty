@@ -57,5 +57,15 @@ jobs:
       # Test application endpoint
       - name: Test application endpoint
         run: |
-          kubectl port-forward svc/rick-morty-service 8080:80 -n rickmorty
-          curl --retry 5 --retry-delay 5 --max-time 60 http://localhost:8080/healthcheck
+           # Get the service name (assuming it's 'rick-morty-service')
+          kubectl port-forward svc/rick-morty-service 8080:80 -n rickmorty & # Forward service port to local port 8080
+          
+          # Wait for port forwarding to initialize
+          sleep 5
+
+          # Check the /healthcheck endpoint on port 8080
+          curl -f http://localhost:8080/healthcheck || exit 1
+          
+          # Optionally, you can terminate the port-forwarding after the test
+          pkill -f "kubectl port-forward"
+
