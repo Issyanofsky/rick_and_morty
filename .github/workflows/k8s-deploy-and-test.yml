@@ -54,17 +54,18 @@ jobs:
           # kubectl wait --for=condition=ready --timeout=300s deployment/rick-morty -n rickmorty
 
         
-      # Test application endpoint
+    # Test application endpoint
       - name: Test application endpoint
         run: |
-           # Get the service name (assuming it's 'rick-morty-service')
+          # Get the service name (assuming it's 'rick-morty-service')
           kubectl port-forward svc/rick-morty-service 8080:80 -n rickmorty & 
           
+          # Wait for port forwarding to initialize
           sleep 6
-
+      
           # Check the /healthcheck endpoint on port 8080
           curl -f http://localhost:8080/healthcheck || exit 1
           
-          # Optionally, you can terminate the port-forwarding after the test
+          # Optionally, terminate the port-forwarding after the test
           pkill -f "kubectl port-forward"
-
+      
