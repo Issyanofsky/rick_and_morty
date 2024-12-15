@@ -51,7 +51,7 @@ jobs:
       - name: Wait for app to be ready
         run: |
          # kubectl wait --for=condition=available --timeout=300s deployment.apps/rick-morty 
-          kubectl wait --for=condition=ready --timeout=300s deployment.apps/rick-morty 
+          kubectl wait --for=condition=ready --timeout=300s deployment/rick-morty -n rickmorty
 
         
       # Test application endpoint
