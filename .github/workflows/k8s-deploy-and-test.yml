@@ -28,32 +28,30 @@ jobs:
           sudo chmod +x ./kubectl
           mv ./kubectl /usr/local/bin/kubectl
 
-# Step 3: Create a Kubernetes cluster using kind
-    - name: Create Kubernetes cluster
-      run: |
-        kind create cluster --name my-cluster
+      # Create a Kubernetes cluster using kind
+      - name: Create Kubernetes cluster
+        run: |
+          kind create cluster --name my-cluster
 
- # Step 4: Set up Kubernetes context for kind cluster
-    - name: Set up kubeconfig
-      run: |
-        export KUBEVERSION=1.21.1
-        mkdir -p ~/.kube
-        kind get kubeconfig --name my-cluster > ~/.kube/config
-    
-    # Step 5: Deploy application to Kubernetes
-    - name: Deploy application
-      run: |
-        kubectl apply -f     # Step 4: Set up Kubernetes context for kind cluster
-    - name: Set up kubeconfig
-      run: |
-        export KUBEVERSION=1.21.1
-        mkdir -p ~/.kube
-        kind get kubeconfig --name my-cluster > ~/.kube/config
-    
-    # Step 5: Deploy application to Kubernetes
-    - name: Deploy application
-      run: |
-        kubectl apply -f yamls/Deployment.yaml
-        kubectl apply -f yamels/Service.yaml
+      # Set up Kubernetes context for kind cluster
+      - name: Set up kubeconfig
+        run: |
+          export KUBEVERSION=1.21.1
+          mkdir -p ~/.kube
+          kind get kubeconfig --name my-cluster > ~/.kube/config
 
-        kubectl apply -f service.yaml
+      # Deploy application to Kubernetes from yamles folder
+      - name: Deploy application
+        run: |
+          kubectl apply -f yamles/Deployment.yaml
+          kubectl apply -f yamles/Service.yaml
+
+      # Wait for the app to be ready (optional, depending on the app's health check setup)
+      - name: Wait for app to be ready
+        run: |
+          kubectl wait --for=condition=available --timeout=300s deployment/my-app
+
+      # Test application endpoint
+      - name: Test application endpoint
+        run: |
+          curl --retry 5 --retry-delay 5 --max-time 60 http://my-app-service:8080/healthcheck
