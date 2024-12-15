@@ -43,8 +43,8 @@ jobs:
       # Deploy application to Kubernetes from yamles folder
       - name: Deploy application
         run: |
-          kubectl apply -f yamles/Deployment.yaml
-          kubectl apply -f yamles/Service.yaml
+          kubectl apply -f yamls/Deployment.yaml
+          kubectl apply -f yamls/Service.yaml
 
       # Wait for the app to be ready (optional, depending on the app's health check setup)
       - name: Wait for app to be ready
