@@ -60,7 +60,7 @@ jobs:
            # Get the service name (assuming it's 'rick-morty-service')
           kubectl port-forward svc/rick-morty-service 8080:80 -n rickmorty & 
           
-          sleep 5
+          sleep 6
 
           # Check the /healthcheck endpoint on port 8080
           curl -f http://localhost:8080/healthcheck || exit 1
