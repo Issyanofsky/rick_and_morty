@@ -17,6 +17,8 @@ Rick and Morty REST API
 
     the application listen on port 5000
     it return a json string with the results.
+          execute script at the folder docker:
+                python ./rick_morty_REST.py  
 
     Accessing the REST API:
         http://localhost:5000/characters to fetch the filtered characters.
@@ -33,7 +35,9 @@ docker:
         docker pull ecyanofsky/rick_and_morty:1.2 (or any other tag available)
         docker run -d -p 5000:5000 --name rick_morty ecyanofsky/rick_and_morty:1.2 (same as above)
     
-    entering the API is the same as above.
+        Accessing the REST API:
+        http://localhost:5000/characters to fetch the filtered characters.
+        http://localhost:5000/healthcheck to check the health of the service.return status 200
 
 K8s:
 
@@ -42,25 +46,30 @@ K8s:
     * the ingress is for a Domain "issy.site.local". set the HOST file locally to address the public ingress address IP.
 
     inside the "yamls" folder there are the files needed to run the application on a K8s cluster. 
-    Deployment.yaml - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty.  it set to 1 replica (can serve more), pulling a image of the
-    REST-api of the ricky and morty. it listen on port 5000.
+    Deployment.yaml - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. 
+      it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listen on port 5000.
     Service.yaml - this is the service file (called: rick-morty-service). it sets to port 80 and its target port is 5000 (80:5000).
     Ingress.yaml- this file set the ingress gateway for the rick and morty API on a istio ingress gateway (name: "rick-morty-gateway"). 
-    it also include the virtual map for the REST service ("name: rick-morty-virtualservice").
-    it set to listen on port 80 and HTTP protocol. transfer traffic for the domain "issy.site.local". which is been routed to the following routs:
+      it also include the virtual map for the REST service ("name: rick-morty-virtualservice"). it set to listen on port 80 with HTTP protocol.
+      it transfer traffic for the domain "issy.site". which is been routed to the following routs:
         /characters - opens a webpage with the result as jason map (http://issy.site/characters). 
         /healthcheck - opens a webpage with the status "healthy" (http://issy.site/healthcheck).
-    the ports transfer are set to 80.
         * /htmlversion - from v1.1 of the image on dockerHub there is a html version of the results: (http://issy.site/htmlversion)
-            (need to change in the Deployment.yaml file - ecyanofsky/rick_and_morty:1.1).
-       
+          (need to change in the Deployment.yaml file - ecyanofsky/rick_and_morty:1.1).
+    
+    apply this app on the cluster by:
+        kubectl appy -f Deployment.yaml
+        kubectl appy -f Service.yaml
+        kubectl appy -f Ingress.yaml
+        
 helm:
-    to execute the helm chard you first need to navigate to the rickmorty folder under the helm folder and execute the following command:
+    to execute the helm chard you first need to navigate to the rickmorty folder under the helm folder and execute the following command (inside your k8s cluster):
 
-    helm upgrade --install -n rickmorty rickmorty -f values.yaml .
+       helm upgrade --install -n rickmorty rickmorty -f values.yaml .
 
     it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
-    the value.yaml is set to deploy image v1.0 with ingress listening for the domain "issy.site".
+    the value.yaml is set to deploy image v1.0 with ingress listening for the domain "issy.site":
+        http://issy.site/characters
 
 github:
 
