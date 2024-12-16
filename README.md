@@ -99,7 +99,7 @@ the Github repository is:
 
               https://github.com/Issyanofsky/rick_and_morty
     
-  created a Github Actions Runner file (.github/workflows/k8s-deploy-and-test.yml) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
+  created a Github Actions Runner file ([Runner file](https://github.com/Issyanofsky/rick_and_morty/blob/main/.github/workflows/k8s-deploy-and-test.yml)) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
   it trigered on pull or push request that done in the folder /yamls (on the main branch).
   it has those steps on a ubuntu (latest) image:
   
