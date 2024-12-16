@@ -17,7 +17,7 @@ Rick and Morty REST API
 
     the application listen on port 5000
     it return a json string with the results.
-          execute script at the folder docker:
+          the script is located at folder /docker and executed:
                 python ./rick_morty_REST.py  
 
     Accessing the REST API:
@@ -27,10 +27,12 @@ Rick and Morty REST API
 
 docker:
 
-    the Dockerfile builds an image of the REST API. based on python:3.12-slim. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
+    the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
     the image is stored in DockerHub:
-    https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general
-
+        https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general
+        
+    the Dockerfile and all the Pre-installation are located under the folder /docker.
+    
     applying on docker (must pull it first):
         docker pull ecyanofsky/rick_and_morty:1.2 (or any other tag available)
         docker run -d -p 5000:5000 --name rick_morty ecyanofsky/rick_and_morty:1.2 (same as above)
@@ -45,7 +47,7 @@ K8s:
     * you need to create manually before starting the deployment a name-space called "rickmorty".
     * the ingress is for a Domain "issy.site.local". set the HOST file locally to address the public ingress address IP.
 
-    inside the "yamls" folder there are the files needed to run the application on a K8s cluster. 
+    inside the /yamls folder there are the files needed to run the application on a K8s cluster. 
     Deployment.yaml - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. 
       it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listen on port 5000.
     Service.yaml - this is the service file (called: rick-morty-service). it sets to port 80 and its target port is 5000 (80:5000).
@@ -64,13 +66,17 @@ K8s:
         
 helm:
 
-    to execute the helm chard you first need to navigate to the rickmorty folder under the helm folder and execute the following command (inside your k8s cluster):
+    to execute the helm chard you first need to navigate to the rickmorty/helm folder and execute the following command (inside your k8s cluster):
 
-       helm upgrade --install -n rickmorty rickmorty -f values.yaml .
+       helm upgrade --install rickmorty . -n rickmorty --create-namespace -f values.yaml
 
     it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
-    the value.yaml is set to deploy image v1.0 with ingress listening for the domain "issy.site":
-        http://issy.site/characters
+    the value.yaml file sets the delpoyment values (image name and version), service values and the ingress roles (istio ingress). it also allow setting an aoutscaling policy and servive acount if needed.
+    the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
+        http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
+        http://issy.site/healthcheck - return "healthy". for test purpose.
+        http://issy.site/htmlversion - display the result in an html format web page.
+        
 
 github:
 
@@ -82,9 +88,9 @@ github:
         - Checkout code - retrive the code.
         - Create Kubernetes cluster - Install dependencies (kind, kubectl).
         - Set up kubeconfig - Create a Kubernetes cluster.
-        - Deploy application - Deploy the rick & morty app (api) to Kubernetes from yamles folder.
+        - Deploy application - Deploy the rick & morty app (api) into the Kubernetes from /yamles folder.
         - Wait for the app to be ready .
-        - Test application endpoint - looks dor "healthy" responce.
+        - Test application endpoint - looks dor "healthy" responce (200).
         
 
     
