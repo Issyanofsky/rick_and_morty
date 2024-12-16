@@ -8,6 +8,7 @@
 
 
 
+
 ## Script:
 
 a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
