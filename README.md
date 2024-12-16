@@ -56,17 +56,18 @@ Accessing the REST API:
 * you need to create manually before starting the deployment a name-space called "rickmorty".
 * the ingress is for a Domain "issy.site.local". set the HOST file locally to address the public ingress address IP.
 
-  inside the /yamls folder there are the files needed to run the application on a K8s cluster. 
-  Deployment.yaml - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listen on port 5000.
-  Service.yaml - this is the service file (called: rick-morty-service). it sets to port 80 and its target port is 5000 (80:5000).
-  Ingress.yaml- this file set the ingress gateway for the rick and morty API on a istio ingress gateway (name: "rick-morty-gateway"). it also include the virtual map for the REST service ("name: rick-morty-virtualservice"). it set to listen on port 80 with HTTP protocol.
-  it transfer traffic for the domain "issy.site". which is been routed to the following routs:
+inside the /yamls folder there are the files needed to run the application on a K8s cluster. 
+Deployment.yaml - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listen on port 5000.
+Service.yaml - this is the service file (called: rick-morty-service). it sets to port 80 and its target port is 5000 (80:5000).
+Ingress.yaml- this file set the ingress gateway for the rick and morty API on a istio ingress gateway (name: "rick-morty-gateway"). it also include the virtual map for the REST service ("name: rick-morty-virtualservice"). it set to listen on port 80 with HTTP protocol.
+it transfer traffic for the domain "issy.site". which is been routed to the following routs:
   
         /characters - opens a webpage with the result as jason map (http://issy.site/characters).
         /healthcheck - opens a webpage with the status "healthy" (http://issy.site/healthcheck).
         /htmlversion - from v1.1 of the image on dockerHub there is a html version of the results: (http://issy.site/htmlversion) (need to change in the Deployment.yaml file - ecyanofsky/rick_and_morty:1.1 or above).
     
 apply this app on the cluster by:
+
         kubectl appy -f Deployment.yaml
         kubectl appy -f Service.yaml
         kubectl appy -f Ingress.yaml
