@@ -68,7 +68,7 @@ Ingress.yaml- this file set the ingress gateway for the rick and morty API on a 
 
 it transfer traffic for the domain "issy.site". which is been routed to the following routs:
   
-        /characters - opens a webpage with the result as jason map - [http://issy.site/characters](http://issy.site/characters).
+        /characters - opens a webpage with the result as jason map - ![http://issy.site/characters](http://issy.site/characters).
         /healthcheck - opens a webpage with the status "healthy" -  [http://issy.site/characters](http://issy.site/healthcheck).
         /htmlversion - from v1.1 of the image on dockerHub there is a html version of the results - [http://issy.site/characters](http://issy.site/htmlversion) (need to change in the Deployment.yaml file - ecyanofsky/rick_and_morty:1.1 or above).
     
