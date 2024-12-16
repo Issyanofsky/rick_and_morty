@@ -10,9 +10,9 @@
 
 ## Script:
 
-a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
-it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
-it extract the result into a csv file called characters.csv.
+    a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
+    it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
+    it extract the result into a csv file called characters.csv.
     
         execute script:
             in the main folder:
@@ -78,8 +78,9 @@ it extract the result into a csv file called characters.csv.
 
        helm upgrade --install rickmorty . -n rickmorty --create-namespace -f values.yaml
 
-  it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
-  the value.yaml file sets the delpoyment values (image name and version), service values and the ingress roles (istio ingress). it also allow setting an aoutscaling policy and servive acount if needed.
+  it will deploy the pod and all nececery dependencies for the app to run (Deployment.yaml, Service.yaml, Ingress.yaml).
+  the value.yaml file sets the delpoyment values (image name and version), service ports and the ingress roles (istio ingress) for accessing the app.
+  it also allow setting an aoutscaling policy and servive acount if needed.
   the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
          - http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
          - http://issy.site/healthcheck - return "healthy". for test purpose.
