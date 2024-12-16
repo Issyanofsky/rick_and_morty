@@ -1,4 +1,4 @@
-                                        # **Rick and Morty**
+#                                           **Rick and Morty**
                                         ![](https://rickandmortyapi.com/api/character/avatar/1.jpeg)
 
 
@@ -31,7 +31,7 @@
 
     the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
     the image is stored in DockerHub:
-        [Link Text](https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general)
+        [ecyanofsky/rick_and_morty](https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general)
         
     the Dockerfile and all the Pre-installation are located under the folder /docker.
     
@@ -75,9 +75,9 @@
   it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
   the value.yaml file sets the delpoyment values (image name and version), service values and the ingress roles (istio ingress). it also allow setting an aoutscaling policy and servive acount if needed.
   the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
-       http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
-       http://issy.site/healthcheck - return "healthy". for test purpose.
-       http://issy.site/htmlversion - display the result in an html format web page.
+         - http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
+         - http://issy.site/healthcheck - return "healthy". for test purpose.
+         - http://issy.site/htmlversion - display the result in an html format web page.
         
 
 ## github:
