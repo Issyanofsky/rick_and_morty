@@ -49,7 +49,7 @@ Accessing the REST API:
 
 ## K8s:
 
-important!!!
+**important!!!**
 * you need to create manually before starting the deployment a name-space called "rickmorty".
 * the ingress is for a Domain "issy.site.local". set the HOST file locally to address the public ingress address IP.
 
