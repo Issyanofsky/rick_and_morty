@@ -1,5 +1,5 @@
 <div align="center">
-# **Rick and Morty**
+    # **Rick and Morty**
     
 ![Rick Sanchez](https://rickandmortyapi.com/api/character/avatar/1.jpeg)
 </div>
