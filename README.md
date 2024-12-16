@@ -10,9 +10,9 @@
 
 ## Script:
 
-    a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
-    it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
-    it extract the result into a csv file called characters.csv.
+a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
+it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
+it extract the result into a csv file called characters.csv.
     
         execute script:
             in the main folder:
