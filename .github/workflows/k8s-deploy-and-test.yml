@@ -4,10 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'yamls/**' 
   pull_request:
     branches:
       - main
-
+    paths:
+      - 'yamls/**' 
+      
 jobs:
   build:
     runs-on: ubuntu-latest   # Use an Ubuntu runner
