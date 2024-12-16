@@ -37,9 +37,9 @@ Accessing the REST API:
 ## docker:
 
 the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
-the image is stored in DockerHub:
+The image is stored in DockerHub:
         [ecyanofsky/rick_and_morty](https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general)
-        
+
 the Dockerfile and all the Pre-installation are located under the folder /docker.
     
 applying on docker (must pull it first):
