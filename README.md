@@ -104,7 +104,7 @@ the default values are set to deploy image v1.2 with ingress listening for the d
 
 the Github repository is:
 
-              https://github.com/Issyanofsky/rick_and_morty
+              [https://github.com/Issyanofsky/rick_and_morty](https://github.com/Issyanofsky/rick_and_morty)
     
   created a Github Actions Runner file ([Runner file](https://github.com/Issyanofsky/rick_and_morty/blob/main/.github/workflows/k8s-deploy-and-test.yml)) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
   it trigered on pull or push request that done in the folder /yamls (on the main branch).
