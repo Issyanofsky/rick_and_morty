@@ -40,10 +40,12 @@ the image is stored in DockerHub:
 the Dockerfile and all the Pre-installation are located under the folder /docker.
     
 applying on docker (must pull it first):
+
         docker pull ecyanofsky/rick_and_morty:1.2 (or any other tag available)
         docker run -d -p 5000:5000 --name rick_morty ecyanofsky/rick_and_morty:1.2 (same as above)
     
 Accessing the REST API:
+
         http://localhost:5000/characters to fetch the filtered characters.
         http://localhost:5000/healthcheck to check the health of the service.return status 200
 
