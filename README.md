@@ -27,8 +27,9 @@ the script is located at folder /docker and executed:
                 python ./rick_morty_REST.py  
 
 Accessing the REST API:
--        http://localhost:5000/characters to fetch the filtered characters.
--        http://localhost:5000/healthcheck to check the health of the service.return status 200
+
+          http://localhost:5000/characters to fetch the filtered characters.
+          http://localhost:5000/healthcheck to check the health of the service.return status 200
 
 
 ## docker:
