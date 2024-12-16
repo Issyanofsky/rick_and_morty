@@ -1,5 +1,7 @@
+<div align="center">
 #                                           **Rick and Morty**
-                                        ![](https://rickandmortyapi.com/api/character/avatar/1.jpeg)
+                                       ![Rick Sanchez](https://rickandmortyapi.com/api/character/avatar/1.jpeg)
+</div>
 
 
 ## Script:
