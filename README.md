@@ -1,6 +1,8 @@
-                                        Rick and Morty 
+#                                        **Rick and Morty**
+                                        ![Alt Text](https://rickandmortyapi.com/api/character/avatar/1.jpeg)
 
-Script:
+
+##Script:
 
     a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
     it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
@@ -10,7 +12,7 @@ Script:
             in the main folder:
                 python ./rick_morty_csv.py
 
-Rick and Morty REST API
+##Rick and Morty REST API
 
     this image is a REST API which fetch characters from the Rick and Morty API (https://rickandmortyapi.com/api)
     where the origin is Earth, status is Alive, and species is Human.
@@ -25,11 +27,11 @@ Rick and Morty REST API
         http://localhost:5000/healthcheck to check the health of the service.return status 200
 
 
-docker:
+##docker:
 
     the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
     the image is stored in DockerHub:
-        https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general
+        [Link Text](https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general)
         
     the Dockerfile and all the Pre-installation are located under the folder /docker.
     
@@ -41,7 +43,7 @@ docker:
         http://localhost:5000/characters to fetch the filtered characters.
         http://localhost:5000/healthcheck to check the health of the service.return status 200
 
-K8s:
+##K8s:
 
     important!!!
     * you need to create manually before starting the deployment a name-space called "rickmorty".
@@ -64,7 +66,7 @@ K8s:
         kubectl appy -f Service.yaml
         kubectl appy -f Ingress.yaml
         
-helm:
+##helm:
 
    execute the helm chard you first need to navigate to the helm/rickmorty folder and execute the following command (inside your k8s cluster):
 
@@ -78,7 +80,7 @@ helm:
        http://issy.site/htmlversion - display the result in an html format web page.
         
 
-github:
+##github:
 
       the Github repository is: https://github.com/Issyanofsky/rick_and_morty
     
