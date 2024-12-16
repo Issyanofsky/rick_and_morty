@@ -100,12 +100,12 @@ the default values are set to deploy image v1.2 with ingress listening for the d
   created a Github Actions Runner file (.github/workflows/k8s-deploy-and-test.yml) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
   it trigered on pull or push request that done in the folder /yamls (on the main branch).
   it has those steps on a ubuntu (latest) image:
-        - Checkout code - retrive the code.
-        - Create Kubernetes cluster - Install dependencies (kind, kubectl).
-        - Set up kubeconfig - Create a Kubernetes cluster.
-        - Deploy application - Deploy the rick & morty app (api) into the Kubernetes from /yamles folder.
-        - Wait for the app to be ready .
-        - Test application endpoint - looks dor "healthy" responce (200).
+        1. Checkout code - retrive the code.
+        2. Create Kubernetes cluster - Install dependencies (kind, kubectl).
+        3. Set up kubeconfig - Create a Kubernetes cluster.
+        4. Deploy application - Deploy the rick & morty app (api) into the Kubernetes from /yamles folder.
+        5. Wait for the app to be ready .
+        6. Test application endpoint - looks dor "healthy" responce (200).
         
 
     
