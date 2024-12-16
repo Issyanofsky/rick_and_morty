@@ -66,25 +66,25 @@ K8s:
         
 helm:
 
-    to execute the helm chard you first need to navigate to the rickmorty/helm folder and execute the following command (inside your k8s cluster):
+   execute the helm chard you first need to navigate to the helm/rickmorty folder and execute the following command (inside your k8s cluster):
 
        helm upgrade --install rickmorty . -n rickmorty --create-namespace -f values.yaml
 
-    it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
-    the value.yaml file sets the delpoyment values (image name and version), service values and the ingress roles (istio ingress). it also allow setting an aoutscaling policy and servive acount if needed.
-    the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
-        http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
-        http://issy.site/healthcheck - return "healthy". for test purpose.
-        http://issy.site/htmlversion - display the result in an html format web page.
+  it will deploy the pod and all nececery dependencies (Deployment.yaml, Service.yaml, Ingress.yaml)
+  the value.yaml file sets the delpoyment values (image name and version), service values and the ingress roles (istio ingress). it also allow setting an aoutscaling policy and servive acount if needed.
+  the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
+       http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
+       http://issy.site/healthcheck - return "healthy". for test purpose.
+       http://issy.site/htmlversion - display the result in an html format web page.
         
 
 github:
 
-    the Github repository is: https://github.com/Issyanofsky/rick_and_morty
+      the Github repository is: https://github.com/Issyanofsky/rick_and_morty
     
-    created a Github Actions Runner file (.github/workflows/k8s-deploy-and-test.yml) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
-    it trigered on pull or push request (on the main branch).
-    it has those steps on a ubuntu (latest) image:
+  created a Github Actions Runner file (.github/workflows/k8s-deploy-and-test.yml) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
+  it trigered on pull or push request (on the main branch).
+  it has those steps on a ubuntu (latest) image:
         - Checkout code - retrive the code.
         - Create Kubernetes cluster - Install dependencies (kind, kubectl).
         - Set up kubeconfig - Create a Kubernetes cluster.
