@@ -11,9 +11,9 @@
 
 ## Script:
 
-a python script that retrive data from rick & morty api ("https://rickandmortyapi.com/api").
-it pules data of the characters how are "Human", "Alive" and there origin is "Earth".
-it extract the result into a csv file called characters.csv.
+a python script that retrieve data from rick & morty api ("https://rickandmortyapi.com/api").
+it pules data of the characters how are "Human", "Alive" and their origin is "Earth".
+it extracts the result into a csv file called characters.csv.
     
 execute script in the main folder:
 
@@ -24,7 +24,7 @@ execute script in the main folder:
 this image is a REST API which fetch characters from the Rick and Morty API (https://rickandmortyapi.com/api)
 where the origin is Earth, status is Alive, and species is Human.
 
-the application listen on port 5000, it return a json string with the results.
+the application listens on port 5000, it returns a json string with the results.
 the script is located at folder /docker and executed:
                 python ./rick_morty_REST.py  
 
@@ -36,7 +36,7 @@ Accessing the REST API:
 
 ## docker:
 
-the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run rhe REST-Api script (rick_morty_REST.py)
+the Dockerfile builds an image of the REST API based on python:3.12-slim image. it loads dependencies and run the REST-Api script (rick_morty_REST.py)
 The image is stored in DockerHub:
         [ecyanofsky/rick_and_morty](https://hub.docker.com/repository/docker/ecyanofsky/rick_and_morty/general)
 
@@ -50,7 +50,7 @@ applying on docker (must pull it first):
 Accessing the REST API:
 
         http://localhost:5000/characters to fetch the filtered characters.
-        http://localhost:5000/healthcheck to check the health of the service.return status 200
+        http://localhost:5000/healthcheck to check the health of the service. return status 200
 
 ## K8s:
 
@@ -60,7 +60,7 @@ Accessing the REST API:
 
 inside the /yamls folder there are the files needed to run the application on a K8s cluster.
 
-**Deployment.yaml** - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listen on port 5000.
+**Deployment.yaml** - Deployment file that lunches an image from DockerHub (ecyanofsky/rick_and_morty:1.0) on a pod under the name: rick-morty. it set to 1 replica (can serve more), pulling a image of the REST-api of the ricky and morty. it listens on port 5000.
 
 **Service.yaml** - this is the service file (called: rick-morty-service). it sets to port 80 and its target port is 5000 (80:5000).
 
@@ -92,7 +92,7 @@ execute the helm chard you first need to navigate to the helm/rickmorty folder a
 
 it will deploy the pod and all nececery dependencies for the app to run (Deployment.yaml, Service.yaml, Ingress.yaml).
 the value.yaml file sets the delpoyment values (image name and version), service ports and the ingress roles (istio ingress) for accessing the app.
-it also allow setting an aoutscaling policy and servive acount if needed.
+it also allows setting an auotscaling policy and service account if needed.
   
 the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
 * http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
@@ -107,15 +107,15 @@ the Github repository is:
    >[https://github.com/Issyanofsky/rick_and_morty](https://github.com/Issyanofsky/rick_and_morty)
     
   created a Github Actions Runner file ([Runner file](https://github.com/Issyanofsky/rick_and_morty/blob/main/.github/workflows/k8s-deploy-and-test.yml)) that build a kubernetes cluster that deploy the rick & morty app and test if it works.
-  it trigered on pull or push request that done in the folder /yamls (on the main branch).
+  it triggered on pull or push request that done in the folder /yamls (on the main branch).
   it has those steps on a ubuntu (latest) image:
   
-        1. Checkout code - retrive the code.
+        1. Checkout code - retrieve the code.
         2. Create Kubernetes cluster - Install dependencies (kind, kubectl).
         3. Set up kubeconfig - Create a Kubernetes cluster.
         4. Deploy application - Deploy the rick & morty app (api) into the Kubernetes from /yamles folder.
-        5. Wait for the app to be ready .
-        6. Test application endpoint - looks dor "healthy" responce (200).
+        5. Wait for the app to be ready.
+        6. Test application endpoint - looks for "healthy" response (200).
         
 
     
