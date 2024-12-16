@@ -66,9 +66,15 @@ Service.yaml - this is the service file (called: rick-morty-service). it sets to
 
 Ingress.yaml- this file set the ingress gateway for the rick and morty API on a istio ingress gateway (name: "rick-morty-gateway"). it also include the virtual map for the REST service ("name: rick-morty-virtualservice"). it set to listen on port 80 with HTTP protocol.
 
+It transfers traffic for the domain "issy.site". which is routed to the following routes:
+
+- **/characters**: Opens a webpage with the result as a JSON map - [http://issy.site/characters](http://issy.site/characters).
+- **/healthcheck**: Opens a webpage with the status "healthy" - [http://issy.site/healthcheck](http://issy.site/healthcheck).
+- **/htmlversion**: From v1.1 of the image on DockerHub, there is an HTML version of the results - [http://issy.site/htmlversion](http://issy.site/htmlversion) (need to change in the `Deployment.yaml` file to `ecyanofsky/rick_and_morty:1.1` or above).
+
 it transfer traffic for the domain "issy.site". which is been routed to the following routs:
   
-        /characters - opens a webpage with the result as jason map - ![http://issy.site/characters](http://issy.site/characters).
+        /characters - opens a webpage with the result as jason map - [http://issy.site/characters](http://issy.site/characters).
         /healthcheck - opens a webpage with the status "healthy" -  [http://issy.site/characters](http://issy.site/healthcheck).
         /htmlversion - from v1.1 of the image on dockerHub there is a html version of the results - [http://issy.site/characters](http://issy.site/htmlversion) (need to change in the Deployment.yaml file - ecyanofsky/rick_and_morty:1.1 or above).
     
