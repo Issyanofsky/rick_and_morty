@@ -83,9 +83,9 @@
   it also allow setting an aoutscaling policy and servive acount if needed.
   
   the default values are set to deploy image v1.2 with ingress listening for the domain "issy.site":
-        - http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
-        - http://issy.site/healthcheck - return "healthy". for test purpose.
-        - http://issy.site/htmlversion - display the result in an html format web page.
+        http://issy.site/characters - json list of the characters search result (Human, alive origin is earth).
+        http://issy.site/healthcheck - return "healthy". for test purpose.
+        http://issy.site/htmlversion - display the result in an html format web page.
         
 
 ## github:
